@@ -20,5 +20,27 @@ function buildTable(data) {
         );
 
     });
-
 }
+function handleClick (){
+    // create variables to hold date data, filtered and unfiltered
+    //With d3.select("#datetime"), we're telling D3 to look for the #datetime id in the HTML tags 
+    //chaining .property("value"); to the d3.select function, we're telling D3 not only to look for where our date values are stored on the webpage, but to actually grab that information and hold it in the "date" variable
+    let date = d3.select("#datetime").property("value");
+    // set a default filter and save it to a new variable. tableData is the original data as imported from our data.js file. By setting the filteredData variable to our raw data, we're basically using it as a blank slate
+    let filteredData = tableData;
+    //filter the data if a date is present
+    if (date) {
+        filteredData = filteredData.filter(row => row.datetime === date);
+    }
+
+    // Rebuild the table using the filtered data
+    // @NOTE: If no date was entered, then filteredData will
+    // just be the original tableData.
+    buildTable(filteredData);
+}
+
+// Tie the handleClick function to the button click on the webpage
+d3.selectAll("#filter-btn").on("click", handleClick);
+
+//create initial table to show when the page is loaded
+buildTable(tableData);
