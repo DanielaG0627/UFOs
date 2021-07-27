@@ -1,5 +1,6 @@
 // import data from data.js
 const tableData = data;
+console.log(tableData);
 // Reference the HTML table using d3
 var tbody = d3.select("tbody");
 // function to create table
@@ -26,7 +27,9 @@ function handleClick (){
     //With d3.select("#datetime"), we're telling D3 to look for the #datetime id in the HTML tags 
     //chaining .property("value"); to the d3.select function, we're telling D3 not only to look for where our date values are stored on the webpage, but to actually grab that information and hold it in the "date" variable
     let date = d3.select("#datetime").property("value");
-    // set a default filter and save it to a new variable. tableData is the original data as imported from our data.js file. By setting the filteredData variable to our raw data, we're basically using it as a blank slate
+    // set a default filter and save it to a new variable. tableData is the original 
+    //data as imported from our data.js file. By setting the filteredData variable 
+    //to our raw data, we're basically using it as a blank slate
     let filteredData = tableData;
     //filter the data if a date is present
     if (date) {
